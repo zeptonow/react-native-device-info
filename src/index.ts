@@ -109,6 +109,13 @@ export const [isLocationEnabled, isLocationEnabledSync] = getSupportedPlatformIn
   defaultValue: false,
 });
 
+export const isTablet = () =>
+  getSupportedPlatformInfoSync({
+    defaultValue: false,
+    supportedPlatforms: ['android', 'ios', 'windows'],
+    memoKey: 'tablet',
+    getter: () => RNDeviceInfo.isTablet,
+  });
 
 export type { AsyncHookResult, DeviceType, LocationProviderInfo, PowerState };
 
@@ -126,7 +133,8 @@ const deviceInfoModule: DeviceInfoModule = {
   getSystemVersion,
   getBuildNumber,
   getBundleId,
-  getBrand
+  getBrand,
+  isTablet,
 };
 
 export default deviceInfoModule;

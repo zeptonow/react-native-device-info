@@ -38,6 +38,7 @@ RCT_EXPORT_MODULE();
          @"systemVersion": [self getSystemVersion],
          @"appVersion": [self getAppVersion],
          @"buildNumber": [self getBuildNumber],
+         @"isTablet": @([self isTablet]),
          @"appName": [self getAppName],
          @"brand": @"Apple",
          @"model": [self getModel],
@@ -238,6 +239,10 @@ RCT_EXPORT_METHOD(getUniqueId:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromi
 
 RCT_EXPORT_METHOD(syncUniqueId:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject) {
     resolve([DeviceUID syncUid]);
+}
+
+- (BOOL) isTablet {
+    return [[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad;
 }
 
 - (NSString *) getDeviceId {

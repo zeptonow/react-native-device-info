@@ -1,5 +1,5 @@
 import { Platform } from 'react-native';
-import type { DeviceType, LocationProviderInfo, PowerState, AsyncHookResult } from './types';
+import type { DeviceType } from './types';
 
 export type NotchDevice = {
   brand: string;
@@ -32,9 +32,7 @@ interface ExposedNativeMethods {
   syncUniqueId: () => Promise<string>;
 }
 
-export interface DeviceInfoNativeModule
-  extends NativeConstants,
-    ExposedNativeMethods {}
+export interface DeviceInfoNativeModule extends NativeConstants, ExposedNativeMethods {}
 
 export interface DeviceInfoModule extends ExposedNativeMethods {
   getBrand: () => string;
@@ -46,6 +44,7 @@ export interface DeviceInfoModule extends ExposedNativeMethods {
   getUniqueIdSync: () => string;
   getVersion: () => string;
   hasNotch: () => boolean;
+  isTablet: () => boolean;
 }
 
 export type Getter<T> = () => T;

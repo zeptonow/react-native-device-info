@@ -18,13 +18,16 @@ import java.util.HashMap;
 import java.util.Map;
 import javax.annotation.Nonnull;
 import static android.provider.Settings.Secure.getString;
+import com.learnium.RNDeviceInfo.resolver.DeviceTypeResolver;
 
 @ReactModule(name = RNDeviceModule.NAME)
 public class RNDeviceModule extends ReactContextBaseJavaModule {
   public static final String NAME = "RNDeviceInfo";
+  private final DeviceTypeResolver deviceTypeResolver;
 
   public RNDeviceModule(ReactApplicationContext reactContext) {
     super(reactContext);
+    this.deviceTypeResolver = new DeviceTypeResolver(reactContext);
   }
 
   @Override
@@ -55,6 +58,7 @@ public class RNDeviceModule extends ReactContextBaseJavaModule {
     constants.put("systemVersion", Build.VERSION.RELEASE);
     constants.put("appVersion", appVersion);
     constants.put("buildNumber", buildNumber);
+    constants.put("isTablet", deviceTypeResolver.isTablet());
     constants.put("appName", appName);
     constants.put("brand", Build.BRAND);
     constants.put("model", Build.MODEL);
