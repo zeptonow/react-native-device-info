@@ -3,11 +3,6 @@ import { DeviceInfoNativeModule } from './privateTypes';
 
 let RNDeviceInfo: DeviceInfoNativeModule | undefined = NativeModules.RNDeviceInfo;
 
-// @ts-ignore
-if (Platform.OS === 'web' || Platform.OS === 'dom') {
-  RNDeviceInfo = require('../web');
-}
-
 if (!RNDeviceInfo) {
   // Produce an error if we don't have the native module
   if (
